@@ -6,7 +6,7 @@ import mindsdb_sdk
 import time
 import pandas as pd
 import numpy as np 
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 
 
@@ -46,8 +46,8 @@ def create_crypto_tables():
             CREATE TABLE IF NOT EXISTS {crypto} (
                 emotion VARCHAR(50),
                 weight FLOAT,
-                timestamp time PRIMARY KEY,
-                category VARCHAR(50)
+                time_of_trade timestamp PRIMARY KEY,
+                category VARCHAR(155)
             );
             '''
             cursor.execute(create_table_query)
@@ -154,8 +154,8 @@ def insert_into_table(currency, emotion, weight, category):
         time = datetime.datetime.now()
 
         # SQL query to insert values into the specified table
-        insert_query = f"INSERT INTO {currency} (emotion, weight, timestamp, category) VALUES (%s, %s, %s, %s);"
-        cursor.execute(insert_query, (emotion, weight, time.strftime('%Y-%m-%d %H:%M:%S'), category))
+        insert_query = f"INSERT INTO {currency} (emotion, weight, time_of_trade, category) VALUES (%s, %s, %s, %s);"
+        cursor.execute(insert_query, (emotion, weight, time.strftime(f'%Y-%m-%d %H:%M:%S.%f'), category))
 
         # Commit the changes
         conn.commit()
@@ -174,11 +174,9 @@ def to_df():
         **connection_params
     )
     
-    cursor = conn.cursor()
-    
     for curr in currencies:
         query = f"SELECT * FROM {curr};"
-        dataframes[curr] = pd.read_sql_query(query, conn)
+        dataframes[curr] = pd.read_sql_query(query, conn, parse_dates=['datetime'])
 
         
 drop_all_tables()
@@ -188,7 +186,7 @@ insert_into_table(
     'BTCUSDT',
     'anger',
     .0031,
-    'very'
+    'anger is not prominent .31% of the time '
     )
 
 time.sleep(2)
@@ -197,15 +195,10 @@ insert_into_table(
     'BTCUSDT',
     'anger',
     .12341,
-    'very'
+    'anger is very prominent 12.341% of the time '
     )
 
 filter_table_by_emotion(
     'anger', 'BTCUSDT'
 )
 
-to_df() 
-
-print(dataframes['BTCUSDT'])
-
-pd.plotting.scatter_matrix(dataframes['BTCUSDT'])
