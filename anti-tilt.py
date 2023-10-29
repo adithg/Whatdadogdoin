@@ -4,6 +4,8 @@ from psycopg2 import sql
 import datetime 
 import mindsdb_sdk
 import time
+import pandas as pd
+import matplotlib as plt
 
 
 
@@ -20,6 +22,8 @@ server = mindsdb_sdk.connect()
 dt = datetime
 
 currencies = ['BTCUSDT', 'ETHUSDT', 'XRPUSDT', 'DOGEUSDT']
+
+dataframes  = {currency : None for currency in currencies}
 
 
 def create_crypto_tables():
@@ -162,6 +166,18 @@ def insert_into_table(currency, emotion, weight, category):
 
     except (Exception, psycopg2.Error) as error:
         print("Error while connecting to PostgreSQL", error)
+        
+        
+def to_df():
+    conn = psycopg2.connect(
+        **connection_params
+    )
+    
+    cursor = conn.cursor()
+    
+    for curr in currencies:
+        query = f"SELECT * FROM {curr};"
+        dataframes[curr] = pd.read_sql_query(query, conn)
 
         
 drop_all_tables()
@@ -186,3 +202,7 @@ insert_into_table(
 filter_table_by_emotion(
     'anger', 'BTCUSDT'
 )
+
+to_df() 
+
+print(dataframes['BTCUSDT'])
