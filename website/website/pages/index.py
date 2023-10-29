@@ -2,6 +2,7 @@
 
 from website import styles
 from website.templates import template
+import Whatdadogdoin.antitilt as anti
 # from website.components.cryptobutton import actionbutton
 
 import reflex as rx
