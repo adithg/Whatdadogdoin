@@ -46,8 +46,7 @@ def create_crypto_tables():
             CREATE TABLE IF NOT EXISTS {crypto} (
                 emotion VARCHAR(50),
                 weight FLOAT,
-                time_of_trade timestamp PRIMARY KEY,
-                category VARCHAR(155)
+                time_of_trade timestamp PRIMARY KEY
             );
             '''
             cursor.execute(create_table_query)
@@ -141,7 +140,7 @@ def get_crypto(crypto_name):
     except (Exception, psycopg2.Error) as error:
         print("Error while connecting to PostgreSQL", error)
         
-def insert_into_table(currency, emotion, weight, category):
+def insert_into_table(currency, emotion, weight):
     try:
         # Establish a connection to the PostgreSQL server
         conn = psycopg2.connect(
@@ -154,8 +153,8 @@ def insert_into_table(currency, emotion, weight, category):
         time = datetime.datetime.now()
 
         # SQL query to insert values into the specified table
-        insert_query = f"INSERT INTO {currency} (emotion, weight, time_of_trade, category) VALUES (%s, %s, %s, %s);"
-        cursor.execute(insert_query, (emotion, weight, time.strftime(f'%Y-%m-%d %H:%M:%S.%f'), category))
+        insert_query = f"INSERT INTO {currency} (emotion, weight, time_of_trade) VALUES (%s, %s, %s);"
+        cursor.execute(insert_query, (emotion, weight, time.strftime(f'%Y-%m-%d %H:%M:%S.%f')))
 
         # Commit the changes
         conn.commit()
@@ -185,8 +184,7 @@ create_crypto_tables()
 insert_into_table(
     'BTCUSDT',
     'anger',
-    .0031,
-    'anger is not prominent .31% of the time '
+    .0031
     )
 
 time.sleep(2)
@@ -194,8 +192,7 @@ time.sleep(2)
 insert_into_table(
     'BTCUSDT',
     'anger',
-    .12341,
-    'anger is very prominent 12.341% of the time '
+    .12341
     )
 
 filter_table_by_emotion(
