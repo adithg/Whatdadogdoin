@@ -2,6 +2,8 @@ import json
 import psycopg2
 from psycopg2 import sql 
 import datetime as dt 
+import mindsdb_sdk
+
 
 def main():
     database = 'example', 
@@ -9,6 +11,8 @@ def main():
     password = '', 
     host = 'host',
     port = 'port'
+    
+    server = mindsdb_sdk.connect()
     
 
     def filter_emoton_threshold(emotion, threshold_value):
@@ -38,3 +42,5 @@ def main():
 
         except psycopg2.Error as e:
             print("Error connecting to PostgreSQL:", e)
+            
+main()
