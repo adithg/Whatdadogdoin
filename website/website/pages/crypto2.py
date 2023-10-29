@@ -3,7 +3,7 @@ from website.templates import template
 import reflex as rx
 
 
-@template(route="/B-crypto2", title="Crypto2")
+@template(route="/crypto2", title="Crypto2")
 def crypto2() -> rx.Component:
     """The profile page.
 

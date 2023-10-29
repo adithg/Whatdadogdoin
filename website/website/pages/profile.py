@@ -4,7 +4,7 @@ from website.templates import template
 import reflex as rx
 
 
-@template(route="/B-profile", title="Profile")
+@template(route="/profile", title="Profile")
 def profile() -> rx.Component:
     """The profile page.
 
