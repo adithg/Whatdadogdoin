@@ -5,10 +5,10 @@ import reflex as rx
 border_radius = "0.375rem"
 box_shadow = "0px 0px 0px 1px rgba(23, 25, 45, 1)"
 # changes task bar border of page in
-border = "2px solid #F4F3F6"
+border = "4px solid black"
 text_color = "black"
 accent_text_color = "#1A1060"
-accent_color = "#F5EFFE"
+accent_color = "pink"
 hover_accent_color = {"_hover": {"color": accent_color}}
 hover_accent_bg = {"_hover": {"bg": accent_color}}
 content_width_vw = "90vw"
@@ -16,7 +16,7 @@ content_width_vw = "90vw"
 sidebar_width = "20em"
 bg = "121323"
 
-template_page_style = {"padding_top": "5em", "padding_x": ["auto", "2em"]}
+template_page_style = {"padding_top": "5em", "padding_x": ["auto", "2em"], "width": "100%"}
 
 template_content_style = {
     "width": "100%",
@@ -46,6 +46,7 @@ base_style = {
         **overlapping_button_style,
     },
     rx.MenuItem: hover_accent_bg,
+    "bg": "rgb(21,24,51)",
 }
 
 markdown_style = {

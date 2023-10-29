@@ -43,6 +43,9 @@ def index() -> rx.Component:
         justify_content = 'space-between',
         border_width="thick",
         border_color ="pink",
-        width= "1000px",
+        width= "100%",
+        bg="blue",
+        border_radius="3px",
+        height="2000px"
 
     )

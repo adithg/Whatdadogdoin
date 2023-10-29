@@ -67,24 +67,28 @@ def sidebar_item(text: str, icon: str, url: str) -> rx.Component:
             ),
             rx.text(
                 text,
+                
             ),
             bg=rx.cond(
                 active,
-                styles.accent_color,
-                "transparent",
+                "teal",
+                "rgb(21,24,51)",
             ),
             color=rx.cond(
                 active,
-                styles.accent_text_color,
-                styles.text_color,
+                "white",
+                "white",
             ),
             border_radius=styles.border_radius,
             box_shadow=styles.box_shadow,
             width="100%",
             padding_x="1em",
+            
         ),
         href=url,
         width="100%",
+
+
     )
 
 
@@ -113,6 +117,7 @@ def sidebar() -> rx.Component:
                 overflow_y="auto",
                 align_items="flex-start",
                 padding="1em",
+                
             ),
             rx.spacer(),
             height="100dvh",
@@ -122,5 +127,6 @@ def sidebar() -> rx.Component:
         height="100%",
         position="sticky",
         top="0px",
+        # bg changes sideBar color
         border_right=styles.border,
     )
