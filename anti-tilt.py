@@ -18,6 +18,8 @@ server = mindsdb_sdk.connect()
 
 dt = datetime
 
+currencies = ['btc', 'eth', 'xrp', 'doge']
+
 
 def create_crypto_tables():
     try:
@@ -68,8 +70,8 @@ def filter_table_by_emotion(emotion_name, table):
         cursor = conn.cursor()
 
         # SQL query to fetch records filtered by emotion
-        filter_query = "SELECT * FROM {table}} WHERE emotions = {emotion_name};"
-        cursor.execute(filter_query, emotion_name)
+        filter_query = f"SELECT * FROM {table} WHERE emotion = %s"
+        cursor.execute(filter_query, (emotion_name, ))
 
         # Fetch all records with the specified emotion in the 'emotions' column
         filtered_data = cursor.fetchall()
@@ -172,4 +174,13 @@ insert_into_table(
     'very'
     )
 
+insert_into_table(
+    'btc',
+    'anger',
+    .12341,
+    'very'
+    )
 
+filter_table_by_emotion(
+    'anger', 'btc'
+)
