@@ -1,5 +1,4 @@
 from .example import example
-from .about import about
 from .profile import profile
 from .index import index
 from .crypto1 import crypto1

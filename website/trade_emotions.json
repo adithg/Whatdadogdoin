@@ -1,0 +1,1 @@
+[{"source": {"type": "file", "filename": "tradevid.mp4", "content_type": null, "md5sum": "14472a0ba4683109e005cf2c1161e875"}, "results": {"predictions": [], "errors": [{"file": "tradevid.mp4", "model": null, "message": "unable to determine file type", "traceback": null}]}}]

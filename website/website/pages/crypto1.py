@@ -2,6 +2,8 @@ from website.templates import template
 
 import reflex as rx
 from typing import List
+from website.components.humebutton import actionbutton
+
 
 
 all_emotions = ['Admiration', 'Adoration','Aesthetic Appreciation','Amusement','Anger','Anxiety','Awe','Awkwardness', 'Boredom','Calmness','Concentration','Confusion','Contemplation','Contempt','Contentment','Craving', 'Desire','Determination','Disappointment','Disgust','Distress','Doubt','Ecstasy','Embarrassment', 'Empathic Pain','Entrancement','Envy','Excitement','Fear','Guilt','Horror','Interest', 'Joy','Love','Nostalgia','Pain','Pride','Realization','Relief','Romance', 'Sadness','Satisfaction','Shame','Surprise (negative)','Surprise (positive)','Sympathy','Tiredness','Triumph']
@@ -27,12 +29,14 @@ def crypto1() -> rx.Component:
                 border_color ="pink",
                 border_radius="3px",
                 
+                
             ),
             rx.box (
                 # maybe make into component 
                 rx.text(
                     "some data", color="white"
                 ),
+                actionbutton(1),
                 border_width="thick",
                 border_color ="#990000",
                 border_radius="3px",
@@ -54,7 +58,7 @@ def crypto1() -> rx.Component:
                 
             ),
         rx.box(
-            rx.text(
+             rx.text(
                     "some data", color="white"
                 ),
                 border_width="thick",
@@ -63,6 +67,7 @@ def crypto1() -> rx.Component:
                 padding_left="8%",
                 bg="#404040",
                 width= "300px"
+            
 
         ),
 

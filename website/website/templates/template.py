@@ -17,43 +17,6 @@ default_meta = [
 ]
 
 
-def menu_button() -> rx.Component:
-    """The menu button on the top right of the page.
-
-    Returns:
-        The menu button component.
-    """
-    from reflex.page import get_decorated_pages
-
-    return rx.box(
-        rx.menu(
-            rx.menu_button(
-                rx.icon(
-                    tag="hamburger",
-                    size="4em",
-                    color=styles.text_color,
-                ),
-            ),
-            rx.menu_list(
-                *[
-                    rx.menu_item(
-                        rx.link(
-                            page["title"],
-                            href=page["route"],
-                            width="100%",
-                        )
-                    )
-                    for page in get_decorated_pages()
-                ],
-            ),
-        ),
-        position="fixed",
-        right="1.5em",
-        top="1.5em",
-        z_index="500",
-    )
-
-
 def template(
     route: str | None = None,
     title: str | None = None,
@@ -110,7 +73,6 @@ def template(
                     **styles.template_page_style,
                 ),
                 rx.spacer(),
-                menu_button(),
                 align_items="flex-start",
                 transition="left 0.5s, width 0.5s",
                 position="relative",
