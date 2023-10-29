@@ -18,7 +18,7 @@ server = mindsdb_sdk.connect()
 
 dt = datetime
 
-currencies = ['btc', 'eth', 'xrp', 'doge']
+currencies = ['BTCUSDT,' 'ETHUSDT,' 'XRPUSDT,' 'DOGEUSDT']
 
 
 def create_crypto_tables():
