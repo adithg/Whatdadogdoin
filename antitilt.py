@@ -170,7 +170,7 @@ def insert_into_table(currency, emotion, weight, delta, category, time=None):
 
         # Commit the changes
         conn.commit()
-        print("Values inserted into the table successfully.")
+        print(f"Values inserted into the database successfully at {time}.\n")
 
         # Close the cursor and connection
         cursor.close()

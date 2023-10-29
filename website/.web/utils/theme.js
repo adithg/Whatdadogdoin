@@ -1,0 +1,1 @@
+export default {"styles": {"global": {"body": {"bg": "rgb(21,24,51)"}}}}

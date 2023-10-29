@@ -1,7 +1,7 @@
 from website import styles
 from website.state import State
 import reflex as rx
-from facial_expressions import start_trade
+from website.facial_expressions import start_trade
 
 class AppState(State):
     btn_text: str = "Start Trading"
