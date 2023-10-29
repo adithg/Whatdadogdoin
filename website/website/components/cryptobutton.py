@@ -1,17 +1,18 @@
-# from website import styles
+from website import styles
+from website.state import State
 
-# import reflex as rx
+import reflex as rx
 
-# class AppState(rx.State):
-#     btn_text: str = "Purchase"
+class AppState(State):
+    btn_text: str = "Purchase"
 
-#     def change_text(self):
-#         if self.btn_text == "Purchase":
-#             # call purchase function
-#             self.btn_text = "Sell"
-#         else:
-#             # call sell function
-#             self.btn_text = "Purchase"
+    def change_text(self):
+        if self.btn_text == "Purchase":
+            # call purchase function
+            self.btn_text = "Sell"
+        else:
+            # call sell function
+            self.btn_text = "Purchase"
 
-# def actionbutton():
-#     return rx.button(AppState.btn_text, on_click=AppState.change_text)
+def cryptobutton():
+    return rx.button(AppState.btn_text, on_click=AppState.change_text)

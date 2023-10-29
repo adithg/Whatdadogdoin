@@ -2,7 +2,7 @@
 
 from website import styles
 from website.templates import template
-import Whatdadogdoin.antitilt as anti
+# import antitilt as anti
 # from website.components.cryptobutton import actionbutton
 
 import reflex as rx
@@ -15,37 +15,30 @@ def index() -> rx.Component:
     Returns:
         The UI for the home page.
     """
-    return rx.box (
-        rx.hstack(
-            rx.box (
-                # rx.html('<iframe src="https://beta.hume.ai/playground?mode=webcam" width="500px" height="500px" id="frame1" allow="autoplay; camera; microphone"</iframe>'
-                # ),
+    return rx.hstack(
+        rx.box (
+            # rx.html('<iframe src="https://beta.hume.ai/playground?mode=webcam" width="500px" height="500px" id="frame1" allow="autoplay; camera; microphone"</iframe>'
+            #     ),
+            border_width="thick",
+            border_color ="pink",
+            width= "70%",
+            height='70%',
+            margin_left="5%",
+            paadding_x="5%",
+        ),
 
-                # actionbutton(),
-                border_color="hotpink",
-                border_width="thick",
-                margin_left="5%",
-                
-            ),
-            rx.box (
-                rx.text("Hey, our code makes use of serveral tools, allowing for the capture of video. Using this video, we display the user's emotions./n On the left head side, we have an example of how the tool looks in real-time", color= "white"),
-                border_color="green",
-                border_width="thick",
-                width= '33%',
-                bg="black",
-                border_radius="5px",
-                padding_x = '1%'
-
-
-           ),
-            justify_content = 'space-between',
+        rx.box(
+            rx.text("On the left is one of the resources provided by Hume at CalHacks 2023, the model looks at the vision and determines someone's emotions using decimals.", color="white"),
+            border_width="thick",
+            border_color ="green",
+            width="30%",
+            height="500px",
 
         ),
-        justify_content = 'space-between',
+
         border_width="thick",
-        # border_color ="pink",
-        width= "100%",
-        bg="blue",
-        border_radius="3px",
-        height="1000px"
+        bg="black",
+        border_color ="red",
+       
+
     )

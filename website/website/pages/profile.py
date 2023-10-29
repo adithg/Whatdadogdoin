@@ -11,11 +11,13 @@ def profile() -> rx.Component:
     Returns:
         The UI for the settings page.
     """
-    return rx.vstack(
-        rx.heading("Profile", font_size="3em"),
-        rx.text("Hey User!"),
-        rx.text(
-            "This is your profile information and treands",
-        ),
-        width="1000px"
+    return rx.hstack(
+         
+        border_width="thick",
+        border_color ="DA338C",
+        width= "100%",
+        height="1000px",
+        bg="",
+        border_radius="3px",
+        justify_content = 'space-between',
     )
