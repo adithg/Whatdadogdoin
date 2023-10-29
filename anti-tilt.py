@@ -3,6 +3,7 @@ import psycopg2
 from psycopg2 import sql 
 import datetime 
 import mindsdb_sdk
+import time
 
 
 
@@ -18,7 +19,7 @@ server = mindsdb_sdk.connect()
 
 dt = datetime
 
-currencies = ['BTCUSDT,' 'ETHUSDT,' 'XRPUSDT,' 'DOGEUSDT']
+currencies = ['BTCUSDT', 'ETHUSDT', 'XRPUSDT', 'DOGEUSDT']
 
 
 def create_crypto_tables():
@@ -40,9 +41,8 @@ def create_crypto_tables():
             CREATE TABLE IF NOT EXISTS {crypto} (
                 emotion VARCHAR(50),
                 weight FLOAT,
-                timestamp TIMESTAMPTZ PRIMARY KEY,
-                category VARCHAR(50),
-                delta FLOAT
+                timestamp time PRIMARY KEY,
+                category VARCHAR(50)
             );
             '''
             cursor.execute(create_table_query)
@@ -150,7 +150,7 @@ def insert_into_table(currency, emotion, weight, category):
 
         # SQL query to insert values into the specified table
         insert_query = f"INSERT INTO {currency} (emotion, weight, timestamp, category) VALUES (%s, %s, %s, %s);"
-        cursor.execute(insert_query, (emotion, weight, time, category))
+        cursor.execute(insert_query, (emotion, weight, time.strftime('%Y-%m-%d %H:%M:%S'), category))
 
         # Commit the changes
         conn.commit()
@@ -168,19 +168,21 @@ drop_all_tables()
 create_crypto_tables()
 
 insert_into_table(
-    'btc',
+    'BTCUSDT',
     'anger',
     .0031,
     'very'
     )
 
+time.sleep(2)
+
 insert_into_table(
-    'btc',
+    'BTCUSDT',
     'anger',
     .12341,
     'very'
     )
 
 filter_table_by_emotion(
-    'anger', 'btc'
+    'anger', 'BTCUSDT'
 )
