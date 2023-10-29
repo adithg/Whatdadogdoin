@@ -141,7 +141,7 @@ def get_crypto(crypto_name):
     except (Exception, psycopg2.Error) as error:
         print("Error while connecting to PostgreSQL", error)
         
-def insert_into_table(currency, emotion, weight, category):
+def insert_into_table(currency, emotion, weight, category, time=datetime.datetime.now()):
     try:
         # Establish a connection to the PostgreSQL server
         conn = psycopg2.connect(
@@ -150,8 +150,6 @@ def insert_into_table(currency, emotion, weight, category):
 
         # Create a cursor
         cursor = conn.cursor()
-        
-        time = datetime.datetime.now()
 
         # SQL query to insert values into the specified table
         insert_query = f"INSERT INTO {currency} (emotion, weight, time_of_trade, category) VALUES (%s, %s, %s, %s);"
@@ -178,7 +176,6 @@ def to_df():
         query = f"SELECT * FROM {curr};"
         dataframes[curr] = pd.read_sql_query(query, conn, parse_dates=['datetime'])
 
-        
 drop_all_tables()
 create_crypto_tables()
 
