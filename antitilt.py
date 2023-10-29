@@ -27,7 +27,7 @@ all_emotions = ['Admiration', 'Adoration','Aesthetic Appreciation','Amusement','
                 'Sadness','Satisfaction','Shame','Surprise (negative)','Surprise (positive)','Sympathy','Tiredness','Triumph']
 
 main_table = "Golden_Touch"
-server = mindsdb_sdk.connect()
+#server = mindsdb_sdk.connect(url='https://cloud.mindsdb.com/account', login='adithgang@gmail.com', password='Awesome#0725!')
 
 dt = datetime
 
@@ -189,13 +189,13 @@ def to_df():
         query = f"SELECT * FROM {main_table};"
         dataframes[curr] = pd.read_sql_query(query, conn, parse_dates=['datetime'])
 
-def create_dummy_data():
+def create_dummy_data(int_val):
     for curr in currencies:
         for i in range(25):
             emotion = np.random.choice(all_emotions)
             mean = random.random()
             percentage = random.random()
-            delta = np.round(random.random(), decimals=2)
+            delta = np.round(random.random(), decimals=2) * int_val
             if mean >= 0.75 and mean <= 1:
                 description = f"This trade was characterized by very prominent {emotion}, which was observed {np.round(percentage * 10, decimals=2)}% of the time with a mean expressiveness score of {np.round(mean, decimals=2)}."
             elif mean >= 0.5 and mean < 0.75:
@@ -207,4 +207,7 @@ def create_dummy_data():
             insert_into_table(curr, emotion, np.round(mean, decimals=2), delta, description, time=None)
             time.sleep(2)
             
-
+#drop_all_tables()
+#create_crypto_tables()
+#create_dummy_data(1)
+#create_dummy_data(-1)
