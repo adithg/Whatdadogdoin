@@ -32,9 +32,9 @@ def create_crypto_tables():
         cursor = conn.cursor()
 
         # List of cryptocurrencies to create tables for
-        cryptocurrencies = ['btc', 'eth', 'xrp', 'doge']
+        currencies
 
-        for crypto in cryptocurrencies:
+        for crypto in currencies:
             # SQL query to create tables
             create_table_query = f'''
             CREATE TABLE IF NOT EXISTS {crypto} (
