@@ -6,11 +6,11 @@ import mindsdb_sdk
 
 
 def main():
-    database = 'example', 
+    database = 'Midas', 
     user = 'postgres',
-    password = '', 
-    host = 'host',
-    port = 'port'
+    password = 'password', 
+    host = '4.tcp.us-cal-1.ngrok.io',
+    port = '10392'
     
     server = mindsdb_sdk.connect()
     
@@ -42,5 +42,7 @@ def main():
 
         except psycopg2.Error as e:
             print("Error connecting to PostgreSQL:", e)
+    
+    
             
 main()
