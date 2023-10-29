@@ -13,5 +13,6 @@ class State(rx.State):
     but i didnt know he was with them
     juan was using a chair, the
     """
-
-    pass
+    # 
+    def handle_button(self, id: int):
+        print(id)
