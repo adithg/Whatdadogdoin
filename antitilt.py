@@ -56,7 +56,8 @@ def create_crypto_tables():
             emotion VARCHAR(50),
             weight FLOAT,
             time_of_trade timestamp PRIMARY KEY,
-            category VARCHAR(200)
+            category VARCHAR(200),
+            delta VARCHAR(200)
         );
         '''
         cursor.execute(create_table_query)
@@ -150,7 +151,7 @@ def get_crypto(crypto_name):
     except (Exception, psycopg2.Error) as error:
         print("Error while connecting to PostgreSQL", error)
         
-def insert_into_table(currency, emotion, weight, category, time=None):
+def insert_into_table(currency, emotion, weight, delta, category, time=None):
     try:
         # Establish a connection to the PostgreSQL server
         conn = psycopg2.connect(
@@ -164,8 +165,8 @@ def insert_into_table(currency, emotion, weight, category, time=None):
             time = datetime.datetime.now()
 
         # SQL query to insert values into the specified table
-        insert_query = f"INSERT INTO {main_table} (currency, emotion, weight, time_of_trade, category) VALUES (%s, %s, %s, %s, %s);"
-        cursor.execute(insert_query, (currency, emotion, weight, time.strftime(f'%Y-%m-%d %H:%M:%S.%f'), category))
+        insert_query = f"INSERT INTO {main_table} (currency, emotion, weight, time_of_trade, category, delta) VALUES (%s, %s, %s, %s, %s, %s);"
+        cursor.execute(insert_query, (currency, emotion, weight, time.strftime(f'%Y-%m-%d %H:%M:%S.%f'), category, delta))
 
         # Commit the changes
         conn.commit()
@@ -194,6 +195,7 @@ def create_dummy_data():
             emotion = np.random.choice(all_emotions)
             mean = random.random()
             percentage = random.random()
+            delta = np.round(random.random(), decimals=2)
             if mean >= 0.75 and mean <= 1:
                 description = f"This trade was characterized by very prominent {emotion}, which was observed {np.round(percentage * 10, decimals=2)}% of the time with a mean expressiveness score of {np.round(mean, decimals=2)}."
             elif mean >= 0.5 and mean < 0.75:
@@ -202,11 +204,7 @@ def create_dummy_data():
                 description = f"Some {emotion} was detected during {np.round(percentage * 10, decimals=2)}% of this trade with a mean expressiveness score of {np.round(mean, decimals=2)}."
             elif mean < 0.3:
                 description = "This trade had no significant emotional context."
-            insert_into_table(curr, emotion, np.round(mean, decimals=2), description, time=None)
+            insert_into_table(curr, emotion, np.round(mean, decimals=2), delta, description, time=None)
             time.sleep(2)
             
 
-            
-drop_all_tables()
-create_crypto_tables()
-create_dummy_data()
