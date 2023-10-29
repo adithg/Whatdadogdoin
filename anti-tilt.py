@@ -5,6 +5,7 @@ import datetime
 import mindsdb_sdk
 import time
 import pandas as pd
+import numpy as np 
 import matplotlib as plt
 
 
@@ -206,3 +207,5 @@ filter_table_by_emotion(
 to_df() 
 
 print(dataframes['BTCUSDT'])
+
+pd.plotting.scatter_matrix(dataframes['BTCUSDT'])
