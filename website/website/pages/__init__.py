@@ -1,4 +1,4 @@
-from .dashboard import dashboard
+from .example import example
 from .about import about
 from .profile import profile
 from .index import index
