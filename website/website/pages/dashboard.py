@@ -4,7 +4,7 @@ from website.templates import template
 import reflex as rx
 
 
-@template(route="/dashboard", title="Dashboard")
+@template(route="/A-dashboard", title="Dashboard")
 def dashboard() -> rx.Component:
     """The dashboard page.
 

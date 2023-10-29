@@ -6,6 +6,7 @@ from website.state import State
 import reflex as rx
 
 
+
 def sidebar_header() -> rx.Component:
     """Sidebar header.
 
@@ -14,31 +15,25 @@ def sidebar_header() -> rx.Component:
     """
     return rx.hstack(
         # The logo.
-        rx.image(
-            src="/icon.svg",
-            height="2em",
-        ),
-        rx.spacer(),
-        # Link to Reflex GitHub repo.
-        rx.link(
-            rx.center(
+        rx.box(
+            rx.box (
                 rx.image(
-                    src="/github.svg",
+                    src="/logo2.png",
                     height="3em",
-                    padding="0.5em",
+                    margin_left="4%",
                 ),
-                box_shadow=styles.box_shadow,
-                bg="transparent",
-                border_radius=styles.border_radius,
-                _hover={
-                    "bg": styles.accent_color,
-                },
+
             ),
-            href="https://github.com/reflex-dev/reflex",
+
         ),
         width="100%",
         border_bottom=styles.border,
-        padding="1em",
+        padding="0",
+        border_width="medium",
+        border_radius="3px",
+        border_color ="pink",
+        margin="3%",
+        
     )
 
 
@@ -74,6 +69,9 @@ def sidebar_item(text: str, icon: str, url: str) -> rx.Component:
                 "teal",
                 "rgb(21,24,51)",
             ),
+              _hover={
+            "color": "hotpink",
+             },
             color=rx.cond(
                 active,
                 "white",
@@ -85,6 +83,9 @@ def sidebar_item(text: str, icon: str, url: str) -> rx.Component:
             padding_x="1em",
             
         ),
+         _hover={
+            "text-decoration": "none",
+        },
         href=url,
         width="100%",
 

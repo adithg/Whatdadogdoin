@@ -2,6 +2,7 @@
 
 from website import styles
 from website.templates import template
+from website.components.cryptobutton import button
 
 import reflex as rx
 
@@ -21,6 +22,7 @@ def index() -> rx.Component:
             width= '33%'
 
         ),
+      
         rx.vstack (
             rx.heading("Welcome", font_size="3em"),
             rx.text("Welcome to Reflex!!!!!"),
@@ -46,6 +48,6 @@ def index() -> rx.Component:
         width= "100%",
         bg="blue",
         border_radius="3px",
-        height="2000px"
+        height="1000px"
 
     )

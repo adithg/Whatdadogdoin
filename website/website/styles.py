@@ -62,7 +62,7 @@ markdown_style = {
         # when hovering in task bar, it picks the color it changes to
         _hover={
             "color": "#AD9BF8",
-            "text_decoration": "underline",
+            "text_decoration": "bold",
             "text_decoration_color": "#121323",
         },
     ),
