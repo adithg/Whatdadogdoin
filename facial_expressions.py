@@ -12,7 +12,7 @@ import datetime
 
 from antitilt import insert_into_table
 
-LUAN_API_KEY = "0BU3yyyBmwT7r6uXV8uh7q17pjNQofKCUnDA2ZfNAGl5Rn8U"
+API_KEY = # Insert API key here
 
 all_emotions = ['Admiration', 'Adoration','Aesthetic Appreciation','Amusement','Anger','Anxiety','Awe','Awkwardness',
                 'Boredom','Calmness','Concentration','Confusion','Contemplation','Contempt','Contentment','Craving',
@@ -52,7 +52,7 @@ out.release()
 cv2.destroyAllWindows()
 
 # Start Hume Batch API
-batch_client = HumeBatchClient(LUAN_API_KEY)
+batch_client = HumeBatchClient(API_KEY)
 
 # Send video to analyze facial expressions
 job = batch_client.submit_job(urls=[], configs=[FaceConfig(identify_faces=True)], files=["tradefootage.mp4"])
